@@ -1,0 +1,222 @@
+/* professeurs.css */
+/* =========== Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+
+:root{
+    --primary:rgb(47, 148, 85);
+    --secondary:rgb(238, 251, 242);
+    --text-1:rgb(33, 40, 50);
+    --text-2: #a9a9a9;
+    --text-3:#f0e2b3;
+    --white: #fff;
+    --shadow-300: 0 5px 5px rgba(0, 0, 0, 0.3);
+    --shadow-500: 0 5px 5px rgba(0, 0, 0, 0.5);
+    --transition-300: all 300ms ease-in-out;
+    --transition-500: all 500ms ease-in-out;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #fafafa;
+    color: #333;
+    padding: 40px;
+}
+
+
+.container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+/* Colonne gauche sticky */
+.sidebar {
+    width: 300px;
+    position: sticky;
+    top: 40px;
+    height: 80vh;
+}
+
+.profile-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.profile-card .desc {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.profile-card .infos{
+    height: 200px;
+    margin-top: 50px;
+
+}
+
+.infos .info{
+    width: 100%;
+    padding: 20px 5px;
+}
+.infos .info span{
+    color: var(--text-1) ;
+    font-weight: 800;
+    font-size: 20px;
+    float: left;
+}
+.infos .info strong{
+    color: var(--text-2) ;
+    font-weight: 600;
+    font-size: 15px;
+    float: right;
+
+}
+.price {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.price strong {
+    color: #222;
+    font-weight: 600;
+}
+
+.btn-connect {
+    background:rgb(47, 148, 85);
+    color: #fff;
+    border: none;
+    padding: 15px 70px;
+    border-radius: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.3s;
+}
+
+.btn-connect:hover {
+    background: rgb(47, 148, 85);
+}
+
+.main-content {
+    flex: 1;
+    background: #fff;
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    line-height: 1.8;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Titre principal des sections */
+.main-content h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Ligne décorative sous les titres */
+.main-content h3::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+/* Texte des paragraphes */
+.main-content p {
+    font-size: 17px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/* Listes de contact et expérience */
+.main-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.main-content .contact li strong{
+    color: #333;
+}
+
+.main-content .contact li {
+    font-size: 16px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* Domaines (tags stylés) */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.tags li {
+    background: var(--secondary);
+    border: 1px solid var(--secondary);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tags li:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+/* Espacement entre les sections */
+.main-content section {
+    margin-bottom: 45px;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 900px) {
+    .main-content {
+        padding: 30px 20px;
+    }
+    .main-content h3 {
+        font-size: 22px;
+    }
+    .main-content p,
+    .main-content li {
+        font-size: 15px;
+    }
+}
