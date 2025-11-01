@@ -1,6 +1,6 @@
-<%@ page import="model.Professeur" %>
+<%@ page import="metier.entities.Professeur" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.domaine" %>
+<%@ page import="metier.entities.Domaine" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -41,8 +41,8 @@
 
                 </div>
             </div>
+            <button onclick="window.location.href='contactProf.jee?id=<%=prof.getId()%>'" class="btn-connect" id="openModal">Contacter</button>
 
-            <button class="btn-connect">Contacter</button>
         </div>
     </aside>
 
@@ -62,11 +62,11 @@
                 <li><strong>Adresse :</strong> <%=prof.getAdresse()%></li>
             </ul>
         </section>
-        <section class="domaines">
+        <section class="Domaines">
             <h3>Domaines d’enseignement</h3>
             <ul class="tags">
-                <% List<model.domaine> domaines = (List<domaine>) prof.getDomaines();
-                for (domaine d: domaines){%>
+                <% List<Domaine> Domaines = (List<Domaine>) prof.getDomaines();
+                for (Domaine d: Domaines){%>
                 <li><%=d.getName()%></li>
                 <%}%>
             </ul>
@@ -75,7 +75,7 @@
         <section class="experience">
             <h3>Expérience</h3>
             <p>
-                <%=prof.getExpérience()%>
+                <%=prof.getExperience()%>
             </p>
         </section>
 
@@ -98,6 +98,9 @@
     }
 %>
 
+
+<!-- Appel du fichier JS -->
+<script src="assets/JS/script.js"></script>
 </body>
 </html>
 

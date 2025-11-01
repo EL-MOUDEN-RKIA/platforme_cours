@@ -1,15 +1,196 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.domaine" %>
-<%@ page import="model.Professeur" %>
+<%@ page import="metier.entities.Domaine" %>
+<%@ page import="metier.entities.Professeur" %>
+<%@ page import="metier.entities.Domaine" %>
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>JSP - Hello World</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/home.css">
+    <style>
+        /* header styling */
+        header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4fbf6;
+            padding-top: 15px;
+            height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 15px;
+            margin-top: 8px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid #2e9b5c;
+            width: 87%;
+            height: 40px;
+
+
+            position: fixed;
+            top: 0;
+            z-index: 1000; /* pour qu’elle reste au-dessus du contenu */
+
+            background-color: rgb(244, 251, 246,0.93) ;
+
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+
+        .logo span {
+            color: #2e9b5c;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2a2a2a;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2e9b5c;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .auth-buttons .signin {
+            color: #2a2a2a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-buttons .signup {
+            color: #2e9b5c;
+            border: 2px solid #2e9b5c;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+
+        }
+
+        .auth-buttons .signup:hover {
+            background-color: #2e9b5c;
+            color: white;
+        }
+
+
+        /* ----- HERO SECTION ----- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f3fdf6;
+            padding: 80px 10%;
+            border-radius: 12px;
+            height: 60vh;
+        }
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h5 {
+            color: #2db36c;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h1 span {
+            color: #2db36c;
+            position: relative;
+        }
+
+        .hero-text p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            max-width: 420px;
+        }
+
+        .hero-text .btn {
+            display: inline-block;
+            background-color: #2db36c;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-text .btn:hover {
+            background-color: #249b5d;
+        }
+
+        .hero-image img {
+            width: 420px;
+            max-width: 100%;
+        }
+    </style>
+
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Le</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">All Course</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="logIn.jee" id="loginBtn" class="signin">Log In</a>
+            <a href="signUp.jee" class="signup" id="signupBtn">Sign Up</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-text">
+            <h5>Find the right teacher for your next course</h5>
+            <h1>Discover expert-led courses designed to help you grow  <span>anytime, anywhere.</span></h1>
+            <p>It has survived not only five centuries but also the leap into electronic typesetting.</p>
+            <a href="#" class="btn">Explore Courses</a>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/logo.jpg" alt="Student learning with laptop">
+        </div>
+    </section>
+</header>
+
 <section id="about-us">
     <div class="about-left">
         <h2>About Us</h2>
@@ -21,7 +202,7 @@
             We believe that every student deserves tailored support and learning at their own pace. Join us and discover a new way to learn and succeed.
         </p>
         <div class="about-buttons">
-            <a href="#" class="btn learn-more">Learn More</a>
+            <a href="/WEB-INF/views/message.jsp" class="btn learn-more">Learn More</a>
             <a href="#" class="btn watch-video">Watch Video ▶</a>
         </div>
     </div>
@@ -74,16 +255,16 @@
                 <button class="arrow left" id="left">&#8249;</button>
                 <div class="category-scroll" id="scroll">
                     <%
-                        List<model.domaine> listModel = (List<model.domaine>) request.getAttribute("listModel");
+                        List<Domaine> listModel = (List<Domaine>) request.getAttribute("listModel");
                         if (listModel != null) {
-                            for (model.domaine d : listModel) { %>
-                    <div class="category active"
-                         onclick="window.location.href='selectDomaine.do?id=<%=d.getId()%>#courses'"
+                            for (Domaine d : listModel) { %>
+                    <button class="category active"
+                         onclick="window.location.href='selectDomaine.jee?id=<%=d.getId()%>#courses'"
                          style="cursor: pointer;">
                         <%= d.getName() %>
-                    </div>
+                    </button>
                     <%      }
-                    } else { %>
+                    } else {%>
                     <p>Aucun domaine disponible.</p>
                     <% } %>
                 </div>
@@ -95,11 +276,11 @@
                 <div class="course-grid">
                     <!-- Course  -->
                     <%
-                        List<model.Professeur> listProf = (List<model.Professeur>) request.getAttribute("listProfesseur");
+                        List<Professeur> listProf = (List<Professeur>) request.getAttribute("listProfesseur");
                         if (listProf != null && !listProf.isEmpty()) {
-                            for (model.Professeur p : listProf) { %>
+                            for (Professeur p : listProf) { %>
                     <div class="course-card"
-                         onclick="window.location.href='selectProf.do?id=<%=p.getId()%>'"
+                         onclick="window.location.href='selectProf.jee?id=<%=p.getId()%>'"
                          style="cursor: pointer;">
                         <div class="course-image">
                             <img src="assets/images/test1.avif" alt="Course Image">
@@ -139,7 +320,7 @@
                     </div>
 
                     <%  }
-                    } else { %>
+                    } else {%>
                     <p>Aucun professeur disponible.</p>
                     <% } %>
                 </div>

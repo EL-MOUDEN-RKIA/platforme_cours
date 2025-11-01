@@ -1,22 +1,23 @@
-package model;
+package metier.entities;
 
-public class utilisateur {
+public class Utilisateur {
     private int id;
     private String nom;
     private String prenom;
     private String email;
-    private String password;
+    private String mot_de_passe;
     private String telephone;
-    private String date_inscription;
-    public utilisateur() {}
-    public utilisateur(int id, String nom, String prenom, String email, String password, String telephone, String date_inscription) {
+
+
+    public Utilisateur() {}
+
+    public Utilisateur(int id, String nom, String prenom, String email, String password, String telephone) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.password = password;
+        this.mot_de_passe = password;
         this.telephone = telephone;
-        this.date_inscription = date_inscription;
 
     }
 
@@ -36,13 +37,6 @@ public class utilisateur {
         this.email = email;
     }
 
-    public String getDate_inscription() {
-        return date_inscription;
-    }
-
-    public void setDate_inscription(String date_inscription) {
-        this.date_inscription = date_inscription;
-    }
 
     public String getTelephone() {
         return telephone;
@@ -60,12 +54,12 @@ public class utilisateur {
         this.prenom = prenom;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMot_de_passe() {
+        return mot_de_passe;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
     }
 
     public String getNom() {

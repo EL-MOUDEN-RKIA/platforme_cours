@@ -1,10 +1,10 @@
-package model;
+package metier.entities;
 
-public class domaine {
-    int  id;
-    String name;
+public class Domaine {
+    private int  id;
+    private String name;
 
-    public domaine(int id, String name){
+    public Domaine(int id, String name){
         this.id= id;
         this.name = name;
 

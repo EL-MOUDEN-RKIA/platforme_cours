@@ -1,33 +1,32 @@
-package model;
+package metier.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Professeur extends utilisateur{
-    private String expérience;
+public class Professeur extends Utilisateur {
+    private String experience;
     private Double tarif;
     private String description;
     private String adresse;
     private String image;
     private String aboutMe;
 
-    private List<domaine> domaines = new ArrayList<>();
+    private List<Domaine> domaines = new ArrayList<>();
 
     public Professeur() {
         super();
     }
-    public Professeur(int id, String nom, String prenom, String email, String password, String telephone, String date_inscription, String expérience, Double tarif, String description, String adresse, String image, String aboutMe) {
-        super(id, nom, prenom, email, password, telephone, date_inscription);
-        this.expérience=expérience;
+    public Professeur(int id, String nom, String prenom, String email, String password, String telephone,  String experience, Double tarif, String description, String adresse, String image, String aboutMe) {
+        super(id, nom, prenom, email, password, telephone);
+        this.experience = experience;
         this.tarif=tarif;
         this.description = description;
         this.adresse = adresse;
         this.image = image;
         this.aboutMe = aboutMe;
     }
-    public Professeur(String expérience, Double tarif, String description, String adresse, String image, String aboutMe) {
-        super();
-        this.expérience=expérience;
+    public Professeur(String experience, Double tarif, String description, String adresse, String image, String aboutMe) {
+        this.experience = experience;
         this.tarif=tarif;
         this.description = description;
         this.adresse = adresse;
@@ -36,12 +35,12 @@ public class Professeur extends utilisateur{
 
     }
 
-    public String getExpérience() {
-        return expérience;
+    public String getExperience() {
+        return experience;
     }
 
-    public void setExpérience(String expérience) {
-        this.expérience = expérience;
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 
     public Double getTarif() {
@@ -84,14 +83,14 @@ public class Professeur extends utilisateur{
         this.image = image;
     }
 
-    public List<domaine> getDomaines() {
+    public List<Domaine> getDomaines() {
         return domaines;
     }
 
-    public void setDomaines(List<domaine> domaines) {
-        this.domaines = domaines;
+    public void setDomaines(List<Domaine> Domaines) {
+        this.domaines = Domaines;
     }
-    public void addDomaine(domaine domaine){
+    public void addDomaine(Domaine domaine){
         this.domaines.add(domaine);
     }
 

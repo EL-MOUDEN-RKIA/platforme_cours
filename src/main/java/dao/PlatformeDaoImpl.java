@@ -1,0 +1,226 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import metier.entities.Domaine;
+import metier.entities.Etudiant;
+import metier.entities.Professeur;
+
+public class PlatformeDaoImpl implements IPlatformeDao {
+
+    @Override
+    public List<Domaine> findAllDomaines() {
+            List<Domaine> list = new ArrayList<>();
+            String sql= "Select * from module";
+        try(Connection cn = SingletonConnection.getConnection();
+            Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery(sql)){
+            while (rs.next()){
+                int id = rs.getInt("id_module");
+                String name = rs.getString("nom_module");
+                list.add(new Domaine(id,name));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+@Override
+    public Professeur findProfesseurbyID(int id){
+        Professeur professeur = null;
+        String sql= "Select * from professeur where id_prof="+id;
+        try(Connection cn = SingletonConnection.getConnection();
+        Statement stm = cn.createStatement();
+        ResultSet rs = stm.executeQuery(sql)) {
+            if (rs.next()){
+                String experience = rs.getString("experience");
+                Double tarif = rs.getDouble("tarif_horaire");
+                String description = rs.getString("description");
+                String adresse = rs.getString("adresse");
+                String image = rs.getString("image");
+                String about_me = rs.getString("about_me");
+                String sql2 = "select * from utilisateur where id_user="+id;
+                try(Statement stm2 = cn.createStatement();
+                ResultSet rs2 = stm2.executeQuery(sql2)) {
+                    if (rs2.next()) {
+                        String nom = rs2.getString("nom");
+                        String prenom = rs2.getString("prenom");
+                        String email = rs2.getString("email");
+                        String telephone = rs2.getString("telephone");
+                        professeur = new Professeur(id,nom, prenom, email, "", telephone,  experience, tarif, description, adresse, image, about_me);
+                    }
+                }
+            }
+
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+            return professeur;
+    }
+    @Override
+    public List<Professeur> findAllProfesseursbyIDdomaine(int id) {
+        List<Professeur> list = new ArrayList<>();
+        String sql= "Select * from professeur_module where id_module="+id;
+        try (Connection cn = SingletonConnection.getConnection();
+             Statement stm = cn.createStatement();
+             ResultSet rs = stm.executeQuery(sql)){
+            List<Integer> idsProfs = new ArrayList<>();
+            while (rs.next()){
+                int id_professeur= rs.getInt("id_prof");
+                idsProfs.add(id_professeur);
+            }
+            for(int i :  idsProfs){
+                Professeur prof = findProfesseurbyID(i);
+                if (prof != null) {
+                    list.add(prof);
+                }
+            }
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Domaine> findAllDomainesbyIDprof(int id) {
+        List<Domaine> list = new ArrayList<>();
+        String sql= "Select * from professeur_module where id_prof="+id;
+        try(Connection cn =SingletonConnection.getConnection();
+        Statement stm = cn.createStatement();
+        ResultSet rs= stm.executeQuery(sql)){
+            List<Integer> idsModules = new ArrayList<>();
+            while (rs.next()){
+                int id_module= rs.getInt("id_module");
+                idsModules.add(id_module);
+            }
+            for(int i :  idsModules){
+                String sql2 = "select * from module where id_module="+i;
+                try(Statement stm2 = cn.createStatement();
+                ResultSet rs2 = stm2.executeQuery(sql2)){
+                    while (rs2.next()){
+                        String name = rs2.getString("nom_module");
+                        Domaine domaine = new Domaine(i,name);
+                        list.add(domaine);
+                    }
+                }
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+
+    @Override
+    public boolean signUpTeacher(Professeur professeur) {
+        Connection connection= dao.SingletonConnection.getConnection();
+        try {
+            PreparedStatement ps=connection.prepareStatement("INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe ,role) VALUES (?, ?, ?, ?, ?,?) ");
+            ps.setString(1,professeur.getNom());
+            ps.setString(2,professeur.getPrenom());
+            ps.setString(3,professeur.getEmail());
+            ps.setString(4,professeur.getTelephone());
+            ps.setString(5,professeur.getMot_de_passe());
+            ps.setString(6,"professeur");
+            ps.executeUpdate();
+
+            PreparedStatement psId=connection.prepareStatement("SELECT MAX(id_user) AS MAX_ID FROM utilisateur ");
+            ResultSet rs=psId.executeQuery();
+            int userId = 0;
+            if (rs.next()) {
+                userId = rs.getInt("MAX_ID");
+            }
+
+            PreparedStatement ps2 = connection.prepareStatement("INSERT INTO professeur(id_prof, experience, tarif_horaire, description, adresse, image, about_me) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps2.setInt(1, userId);
+            ps2.setString(2, professeur.getExperience());
+            ps2.setDouble(3, professeur.getTarif());
+            ps2.setString(4, professeur.getDescription());
+            ps2.setString(5,professeur.getAdresse());
+            ps2.setString(6, professeur.getImage());
+            ps2.setString(7, professeur.getAboutMe());
+            ps2.executeUpdate();
+
+
+            PreparedStatement psIdProf =connection.prepareStatement("SELECT MAX(id_prof) AS MAX_ID FROM professeur ");
+            ResultSet rs1= psIdProf.executeQuery();
+            int profId = 0;
+            if (rs.next()) {
+                profId = rs1.getInt("MAX_ID");
+            }
+
+
+
+            PreparedStatement ps4 = connection.prepareStatement("INSERT INTO professeur_module(id_prof, id_module) VALUES (?, ?)");
+            ps2.setInt(1,profId);
+            ps2.setString(2, String.valueOf(2));
+
+
+            ps.close();
+            ps2.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean signUpStudent(Etudiant etudiant) {
+        Connection connection= dao.SingletonConnection.getConnection();
+        try {
+            PreparedStatement ps=connection.prepareStatement("INSERT INTO utilisateur(nom, prenom, telephone, mot_de_passe, email, role) VALUES (?, ?, ?, ?, ?, ?)");
+            ps.setString(1, etudiant.getNom());
+            ps.setString(2, etudiant.getPrenom());
+            ps.setString(3, etudiant.getTelephone());
+            ps.setString(4, etudiant.getMot_de_passe());
+            ps.setString(5, etudiant.getEmail());
+            ps.setString(6, "etudiant");
+
+            ps.executeUpdate();
+            PreparedStatement psId=connection.prepareStatement("SELECT MAX(id_user) AS MAX_ID FROM utilisateur ");
+            ResultSet rs=psId.executeQuery();
+            int userId = 0;
+            if (rs.next()) {
+                userId = rs.getInt("MAX_ID");
+            }
+            String sqlEtudiant = "INSERT INTO etudiant(id_etudiant, niveau_etude) VALUES (?, ?)";
+            PreparedStatement psEtudiant = connection.prepareStatement(sqlEtudiant);
+            psEtudiant.setInt(1, userId);
+            psEtudiant.setString(2, etudiant.getNiveau_etude());
+            psEtudiant.executeUpdate();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Professeur loginTeacher(String email, String password) {
+        Professeur teacher=null;
+        Connection connection= dao.SingletonConnection.getConnection();
+        try{
+            PreparedStatement ps=connection.prepareStatement("SELECT * FROM utilisateur WHERE email = ? and password = ?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs=ps.executeQuery();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Etudiant loginStudent(String email, String mot_de_pass) {
+        return null;
+    }
+}
