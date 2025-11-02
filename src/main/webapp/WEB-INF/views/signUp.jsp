@@ -1,3 +1,8 @@
+
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="metier.entities.Domaine" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,7 +200,7 @@
 
             <div class="form-group">
                 <label>Password *</label>
-                <input type="mot_de_passe" name="mot_de_passe" required>
+        <input type="password" name="mot_de_passe" required>
             </div>
 
             <div class="form-group">
@@ -215,14 +220,17 @@
 
             <div class="form-group">
                 <label>Subjects *</label>
-                <select name="domaine" required>
-                    <option value="">-- Select Subject --</option>
-                    <option>Mathematics</option>
-                    <option>Physics</option>
-                    <option>Chemistry</option>
-                    <option>English</option>
-                    <option>French</option>
-                    <option>Biology</option>
+
+                <select name="module" required>
+                    <%
+                        List<Domaine> listModel = (List<Domaine>) request.getAttribute("listModel");
+                        if (listModel != null) {
+                            for (Domaine d : listModel) { %>
+                    <option><%= d.getName() %></option>
+                    <%
+                            } // fin du for
+                        } // fin du if
+                    %>
                 </select>
             </div>
 
@@ -276,7 +284,8 @@
 
             <div class="form-group">
                 <label>Password *</label>
-                <input type="mot_de_passe" name="mot_de_passe" required>
+
+                <input type="password" name="mot_de_passe" required>
             </div>
 
             <div class="form-group">

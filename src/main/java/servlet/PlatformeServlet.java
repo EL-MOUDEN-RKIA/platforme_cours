@@ -11,9 +11,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.http.HttpSession;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
+import metier.entities.Utilisateur;
 import service.PlatformeService;
 
 @WebServlet(urlPatterns = {"*.jee"})
@@ -66,8 +69,20 @@ public class PlatformeServlet extends HttpServlet {
                 break;
             }
 
+
+            case "/contactProf.jee":{
+                int id_professeur = Integer.parseInt(req.getParameter("id"));
+                Professeur professeur = ps.getProfesseurbyID(id_professeur);
+                List<Domaine> domaines = ps.getAllDomainesbyIDprof(id_professeur);
+                professeur.setDomaines(domaines);
+                req.setAttribute("professeur", professeur);
+                req.getRequestDispatcher("/WEB-INF/views/demande.jsp").forward(req, resp);
+            }
+
             // 📝 Page d’inscription (affichage)
             case "/signUp.jee": {
+                List<Domaine> listModel = ps.getAllDomaine();
+                req.setAttribute("listModel", listModel);
                 req.getRequestDispatcher("/WEB-INF/views/signUp.jsp").forward(req, resp);
                 break;
             }
@@ -77,6 +92,34 @@ public class PlatformeServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/views/logIn.jsp").forward(req, resp);
                 break;
             }
+
+
+            //log in
+            case "/dashboard.jee": {
+                String email = req.getParameter("email");
+                String password = req.getParameter("mot_de_passe");
+                Utilisateur user = metier.loginCheck(email, password);
+                String role=user.getRole();
+
+                if (role != null) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("email", email);
+                    session.setAttribute("role", role);
+
+                    if (role.equals("professeur")) {
+                        resp.sendRedirect("dashboardProf.jsp");
+                        return; // ✅ très important : empêche de continuer après redirection
+                    } else if (role.equals("etudiant")) {
+                        resp.sendRedirect("dashboardEtudiant.jsp");
+                        return; // ✅ même raison
+                    }
+                } else {
+                    req.setAttribute("errorMessage", "Email ou mot de passe incorrect !");
+                    req.getRequestDispatcher("/WEB-INF/views/logIn.jsp").forward(req, resp);
+                }
+                break;
+            }
+
 
             // 🧭 Par défaut
             default: {
@@ -108,15 +151,14 @@ public class PlatformeServlet extends HttpServlet {
                 String description = req.getParameter("description");
                 String about_me = req.getParameter("about_me");
 
-                Professeur teacher = new Professeur(0, nom, prenom, email, mot_de_passe, telephone,
-                        experience, tarif_horaire, description, adresse, image, about_me);
-
-                boolean done = metier.signUpTeacher(teacher);
-
+                String module=req.getParameter("module");
+                Domaine domaine=new Domaine(0,module);
+                Professeur teacher = new Professeur(0, nom, prenom, email, mot_de_passe, telephone, experience, tarif_horaire, description, adresse, image, about_me);
+                boolean done = metier.signUpTeacher(teacher, domaine);
                 if (done) {
                     req.getRequestDispatcher("/WEB-INF/views/logIn.jsp").forward(req, resp);
                 } else {
-                    req.getRequestDispatcher("index.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/signUp.jsp").forward(req, resp);
                 }
                 break;
             }
@@ -140,6 +182,7 @@ public class PlatformeServlet extends HttpServlet {
                 }
                 break;
             }
+
 
             // 🧭 Par défaut
             default: {

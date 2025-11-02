@@ -1,4 +1,6 @@
 
+<%@ include file="/WEB-INF/views/header.jsp" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -173,15 +175,17 @@
         <h1>Welcome back!</h1>
         <p>Simplify your workflow and boost your productivity with <strong>Tuga's App</strong>. Get started for free.</p>
 
-        <form>
+
+        <form action="dashboard.jee" method="get">
             <div class="input-box">
                 <i class="fa fa-envelope"></i>
-                <input type="email" placeholder="Email" required>
+                <input type="email" placeholder="Email" name="email" required>
             </div>
 
             <div class="input-box">
                 <i class="fa fa-lock"></i>
-                <input type="mot_de_passe" placeholder="Password" required>
+
+                <input type="password" placeholder="Password" name="mot_de_passe" required>
             </div>
 
             <div class="actions">
