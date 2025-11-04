@@ -220,37 +220,41 @@
     </div>
 
     <!-- Section message et contact -->
-    <div class="content">
-        <h1>Programmez</h1>
-        <p>votre premier cours avec<%=prof.getPrenom()%></p>
+    <form action="envoyer.jee">
+        <div class="content">
+            <h1>Programmez</h1>
+            <p>votre premier cours avec<%=prof.getPrenom()%></p>
 
-        <h3>Votre message</h3>
-        <textarea id="message">Bonjour Mouna,
+            <h3>Votre message</h3>
+            <textarea id="message" name="message">Bonjour Mouna,
 Je m’appelle KHADIJA et je cherche un professeur d'Aide aux devoirs.
 Je souhaiterais prendre les cours par webcam.
 Idéalement, j’aimerais débuter les cours au plus tôt.
 Est ce que cela vous irait ? Pouvez-vous prendre contact avec moi afin que l’on en parle ?</textarea>
 
-        <div class="info-section">
-            <h3>Les coordonnées pour vous contacter</h3>
-            <p>Elles ne sont communiquées qu'aux professeurs que vous sélectionnez</p>
+            <div class="info-section" >
+                <h3>Les coordonnées pour vous contacter</h3>
+                <p>Elles ne sont communiquées qu'aux professeurs que vous sélectionnez</p>
 
-            <div class="info-grid">
-                <div class="info-box">
-                    <div class="info-label">Adresse</div>
-                    Casablanca, Maroc
-                </div>
-                <div class="info-box">
-                    <div class="info-label">Numéro de téléphone</div>
-                     0678-654323
+                <div class="info-grid">
+                    <div class="info-box">
+                        <div class="info-label">Adresse</div>
+                        Casablanca, Maroc
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Numéro de téléphone</div>
+                        0678-654323
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="btn">
-            <button id="nextBtn">Suivant <span class="arrow">➜</span></button>
+            <div class="btn">
+                <button id="nextBtn">Envoyer <span class="arrow">➜</span></button>
+            </div>
         </div>
-    </div>
+    </form>
+
+
 </div>
 <%
 }

@@ -120,6 +120,12 @@ public class PlatformeServlet extends HttpServlet {
                 break;
             }
 
+            case "/envoyer.jee":{
+                String message=req.getParameter("message");
+
+            }
+
+
 
             // 🧭 Par défaut
             default: {

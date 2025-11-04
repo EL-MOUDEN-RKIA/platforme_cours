@@ -213,11 +213,8 @@ public class PlatformeDaoImpl implements IPlatformeDao {
     }
 
 
-
-    @Override
-
     public Utilisateur loginCheck(String email, String mot_de_pass) {
-       Utilisateur user = null;
+        Utilisateur user = null;
         Connection connection= dao.SingletonConnection.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM utilisateur WHERE email = ? and mot_de_passe = ?");
@@ -225,13 +222,14 @@ public class PlatformeDaoImpl implements IPlatformeDao {
             ps.setString(2, mot_de_pass);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                user=new Utilisateur();
+
+                user =new Utilisateur();
                 user.setId(rs.getInt("id_user"));
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
-                user.setTelephone(rs.getString("telephone"));
                 user.setEmail(rs.getString("email"));
                 user.setMot_de_passe(rs.getString("mot_de_passe"));
+                user.setTelephone(rs.getString("telephone"));
                 user.setRole(rs.getString("role"));
             }
         } catch (Exception e) {
