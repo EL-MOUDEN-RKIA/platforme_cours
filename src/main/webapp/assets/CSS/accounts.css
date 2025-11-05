@@ -1,0 +1,203 @@
+/* ===== ACCOUNT SECTION MODERN DESIGN ===== */
+.account {
+    background: #fff;
+    border-radius: 25px;
+    padding: 3rem;
+    flex: 1;
+    min-width: 700px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.account:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.account h3 {
+    margin-bottom: 2rem;
+    color: #111;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+}
+.profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centre tout le contenu horizontalement */
+    justify-content: flex-start; /* aligne le contenu en haut */
+    padding-top: 2rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 20px;
+    padding-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* avatar déjà défini précédemment */
+.avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 1rem; /* espace entre la photo et le nom */
+}
+
+/* image */
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* bouton caméra */
+.camera-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.camera-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+/* style pour le nom et la mention */
+.profile h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0.5rem 0 0;
+}
+
+.profile .verified {
+    color: #4CAF50;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
+
+.account h3::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+/* FORM STYLING */
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    flex: 100%;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-1);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* INPUTS */
+.form-group input,
+.form-group textarea {
+    padding: 1rem 1.2rem;
+    border: 1.5px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    font-weight: 300; /* Texte léger */
+}
+
+/* TEXTAREA SPECIAL STYLE */
+.form-group textarea {
+    min-height: 130px; /* Plus haut que les autres champs */
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 6px rgba(47, 148, 85, 0.3);
+    background-color: #fff;
+}
+
+/* BUTTON */
+.btn-update {
+    background: linear-gradient(135deg, rgb(47, 148, 85), rgb(25, 109, 63));
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(47, 148, 85, 0.3);
+}
+
+.btn-update:hover {
+    background: linear-gradient(135deg, rgb(36, 120, 68), rgb(19, 88, 51));
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(47, 148, 85, 0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .account {
+        min-width: 100%;
+        padding: 2rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .btn-update {
+        width: 100%;
+        text-align: center;
+    }
+}

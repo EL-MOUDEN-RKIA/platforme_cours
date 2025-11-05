@@ -7,7 +7,15 @@ public class Utilisateur {
     private String email;
     private String mot_de_passe;
     private String telephone;
+    private String role;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Utilisateur() {}
 

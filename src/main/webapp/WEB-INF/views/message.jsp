@@ -8,27 +8,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord - Salwa</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/message.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/messages.css">
+
 </head>
 <body>
-
+<% Professeur prof1 = (Professeur) request.getAttribute("prof");%>
 <div class="header">
-<%@ include file="nav.jsp" %>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Le</span></div>
+        <ul class="nav-links">
+            <li><a href="home.jee#home">Home</a></li>
+            <li><a href="home.jee#about-us">About Us</a></li>
+            <li><a href="home.jee#courses">All Courses</a></li>
+            <li><a href="home.jee#testimonials">Testimonials</a></li>
+        </ul>
+        <div class="profile-menu">
+            <button class="profile-btn">
+                <%= prof1.getPrenom().substring(0, 1).toUpperCase() %>
+            </button>
+        </div>
+    </nav>
 </div>
 
 <nav class="navbar2">
-    <a href="cheekMessage.jee?id=1" class="active">My Messages</a>
-    <a href="cheekAccount.jee?id=1">My Account</a>
+    <a href="cheekMessage.jee?id=<%=prof1.getId()%>" class="active">My Messages</a>
+    <a href="cheekAccount.jee?id=<%=prof1.getId()%>">My Account</a>
 </nav>
 
 <main class="dashboard">
-    <% Professeur prof = (Professeur) request.getAttribute("prof");%>
     <section class="profile">
         <div class="avatar">
-            <div class="user-icon">👤</div>
+            <img src="${pageContext.request.contextPath}/assets/images/<%=prof1.getImage()%>"
+                 alt="Profile Photo" class="profile-photo">
             <button class="camera-btn">📸</button>
         </div>
-        <h2><%=prof.getPrenom()%></h2>
+
+        <h2><%= prof1.getPrenom()%></h2>
         <p class="verified">✔ Contact Verified</p>
     </section>
 
@@ -36,7 +51,7 @@
         <h3>My Course Requests</h3>
         <!-- Exemple d’un message -->
         <% List<Demande> listDemande = (List<Demande>) request.getAttribute("listDemande");
-            if (listDemande != null){
+            if (listDemande != null && !listDemande.isEmpty()){
                 for (Demande d: listDemande){
             %>
         <div class="message">
@@ -61,13 +76,14 @@
         } else{%>
 
         <div class="no-request">
-            <img src="assets\images\aucun.png" alt="demande" class="icon">
+            <img src="${pageContext.request.contextPath}/assets/images/aucun.png" alt="demande" class="icon">
             <p>No Requests</p>
         </div>
         <%}%>
     </section>
 </main>
 <script src="${pageContext.request.contextPath}/assets/JS/message.js"></script>
+<script src="${pageContext.request.contextPath}/assets/JS/nav.js"></script>
 
 </body>
 </html>

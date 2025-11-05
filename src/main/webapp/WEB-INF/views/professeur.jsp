@@ -1,3 +1,4 @@
+
 <%@ page import="metier.entities.Professeur" %>
 <%@ page import="java.util.List" %>
 <%@ page import="metier.entities.Domaine" %>
@@ -20,7 +21,7 @@
     %>
     <aside class="sidebar">
         <div class="profile-card">
-            <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil" class="profile-img">
+            <img src="assets/images/<%=prof.getImage()%>" alt="Photo de profil" class="profile-img">
             <h2><%=prof.getPrenom()%> <%= prof.getNom()%></h2>
             <p class="desc"><%= prof.getDescription()%></p>
             <div class="infos">

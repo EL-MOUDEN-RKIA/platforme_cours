@@ -5,12 +5,12 @@ import metier.entities.Demande;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
+import metier.entities.Utilisateur;
 
 public interface IPlatformeDao {
-    public boolean signUpTeacher(Professeur professeur);//veux juste savoir si l’inscription a réussi
+    public boolean signUpTeacher(Professeur professeur, Domaine doamine);//veux juste savoir si l’inscription a réussi
     public boolean signUpStudent(Etudiant etudiantnt);
-    public Professeur loginTeacher(String email, String mot_de_pass);
-    public Etudiant loginStudent(String email, String mot_de_pass);
+    public Utilisateur loginCheck(String email, String mot_de_pass);
 
     public List<Domaine> findAllDomaines();
     public  List<Professeur> findAllProfesseursbyIDdomaine(int id);

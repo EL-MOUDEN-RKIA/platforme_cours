@@ -122,12 +122,12 @@
                          onclick="window.location.href='selectProf.jee?id=<%=p.getId()%>'"
                          style="cursor: pointer;">
                         <div class="course-image">
-                            <img src="assets/images/test1.avif" alt="Course Image">
+                            <img src="assets/images/<%=p.getImage()%>" alt="Course Image">
                         </div>
 
                         <div class="course-content">
                             <div class="teacher-info">
-                                <img src="assets/images/test1.avif" alt="Teacher" class="teacher-photo">
+                                <img src="assets/images/<%=p.getImage()%>" alt="Teacher" class="teacher-photo">
                                 <p class="teacher-name"><%=p.getPrenom()%> <%=p.getNom()%></p>
                                 <span class="category">Science</span>
                             </div>

@@ -11,6 +11,7 @@ import metier.entities.Demande;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
+import metier.entities.Utilisateur;
 
 public class PlatformeDaoImpl implements IPlatformeDao {
 
@@ -212,7 +213,8 @@ public class PlatformeDaoImpl implements IPlatformeDao {
 
 
     @Override
-    public boolean signUpTeacher(Professeur professeur) {
+
+    public boolean signUpTeacher(Professeur professeur, Domaine domaine) {
         Connection connection= dao.SingletonConnection.getConnection();
         try {
             PreparedStatement ps=connection.prepareStatement("INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe ,role) VALUES (?, ?, ?, ?, ?,?) ");
@@ -231,7 +233,8 @@ public class PlatformeDaoImpl implements IPlatformeDao {
                 userId = rs.getInt("MAX_ID");
             }
 
-            PreparedStatement ps2 = connection.prepareStatement("INSERT INTO professeur(id_prof, experience, tarif_horaire, description, adresse, image, about_me) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            PreparedStatement ps2 = connection.prepareStatement("INSERT INTO professeur(id_prof, experience, tarif_horaire, description, adresse, image, about_me) VALUES (?, ?, ?, ?, ?, ?, ?)");
             ps2.setInt(1, userId);
             ps2.setString(2, professeur.getExperience());
             ps2.setDouble(3, professeur.getTarif());
@@ -245,16 +248,22 @@ public class PlatformeDaoImpl implements IPlatformeDao {
             PreparedStatement psIdProf =connection.prepareStatement("SELECT MAX(id_prof) AS MAX_ID FROM professeur ");
             ResultSet rs1= psIdProf.executeQuery();
             int profId = 0;
-            if (rs.next()) {
+
+            if (rs1.next()) {
                 profId = rs1.getInt("MAX_ID");
             }
+            PreparedStatement psmoduleId =connection.prepareStatement("SELECT id_module FROM module where nom_module=?");
+            psmoduleId.setString(1,domaine.getName() );
+            ResultSet rs2= psmoduleId.executeQuery();
+            int  moduleId = 0;
+            if (rs2.next()) {
+                moduleId = rs2.getInt("id_module");
+            }
 
-
-
-            PreparedStatement ps4 = connection.prepareStatement("INSERT INTO professeur_module(id_prof, id_module) VALUES (?, ?)");
-            ps2.setInt(1,profId);
-            ps2.setString(2, String.valueOf(2));
-
+            PreparedStatement ps3 = connection.prepareStatement("INSERT INTO professeur_module(id_prof, id_module) VALUES (?, ?)");
+            ps3.setInt(1,profId);
+            ps3.setInt(2, moduleId);
+            ps3.executeUpdate();
 
             ps.close();
             ps2.close();
@@ -296,24 +305,29 @@ public class PlatformeDaoImpl implements IPlatformeDao {
         }
     }
 
-    @Override
-    public Professeur loginTeacher(String email, String password) {
-        Professeur teacher=null;
-        Connection connection= dao.SingletonConnection.getConnection();
-        try{
-            PreparedStatement ps=connection.prepareStatement("SELECT * FROM utilisateur WHERE email = ? and password = ?");
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs=ps.executeQuery();
 
-        }catch (Exception e){
+    public Utilisateur loginCheck(String email, String mot_de_pass) {
+        Utilisateur user = null;
+        Connection connection= dao.SingletonConnection.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM utilisateur WHERE email = ? and mot_de_passe = ?");
+            ps.setString(1, email);
+            ps.setString(2, mot_de_pass);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+                user =new Utilisateur();
+                user.setId(rs.getInt("id_user"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setEmail(rs.getString("email"));
+                user.setMot_de_passe(rs.getString("mot_de_passe"));
+                user.setTelephone(rs.getString("telephone"));
+                user.setRole(rs.getString("role"));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public Etudiant loginStudent(String email, String mot_de_pass) {
-        return null;
+        return user; // renvoie "professeur", "etudiant" ou null si non trouvé
     }
 }

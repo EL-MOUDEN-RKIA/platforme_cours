@@ -1,5 +1,5 @@
 
-    /* =========== Fonts ============ */
+/* =========== Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
@@ -35,7 +35,7 @@
     position: fixed;
     top: 0;
     z-index: 1000; /* pour qu’elle reste au-dessus du contenu */
-    background-color: var(--secondary) ;
+    background-color: var(--secondary) !important;
 
 }
 
@@ -209,6 +209,75 @@
 .verified {
     margin-top: 0.5rem;
     color: green;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centre tout le contenu horizontalement */
+    justify-content: flex-start; /* aligne le contenu en haut */
+    padding-top: 2rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 20px;
+    padding-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* avatar déjà défini précédemment */
+.avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 1rem; /* espace entre la photo et le nom */
+}
+
+/* image */
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* bouton caméra */
+.camera-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.camera-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+/* style pour le nom et la mention */
+.profile h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0.5rem 0 0;
+}
+
+.profile .verified {
+    color: #4CAF50;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
 }
 
 /* REQUESTS SECTION */
