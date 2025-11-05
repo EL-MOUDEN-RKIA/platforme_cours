@@ -192,7 +192,7 @@
             </div>
 
             <p class="login-link">
-                Don't have an account? <a href="#">Sign In</a>
+                Don't have an account? <a href="#">Sign Up</a>
             </p>
         </form>
     </div>

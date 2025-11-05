@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import metier.entities.Demande;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
@@ -63,6 +64,36 @@ public class PlatformeDaoImpl implements IPlatformeDao {
         }
             return professeur;
     }
+
+    @Override
+    public Etudiant findEtudiantbyID(int id){
+        Etudiant etudiant = null;
+        String sql= "Select * from etudiant where id_etudiant="+id;
+        try(Connection cn = SingletonConnection.getConnection();
+            Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery(sql)) {
+            if (rs.next()){
+                String niveau_etude = rs.getString("niveau_etude");
+                String sql2 = "select * from utilisateur where id_user="+id;
+                try(Statement stm2 = cn.createStatement();
+                    ResultSet rs2 = stm2.executeQuery(sql2)) {
+                    if (rs2.next()) {
+                        String nom = rs2.getString("nom");
+                        String prenom = rs2.getString("prenom");
+                        String email = rs2.getString("email");
+                        String telephone = rs2.getString("telephone");
+                        etudiant = new Etudiant(id,nom, prenom, email, "", telephone,  niveau_etude);
+                    }
+                }
+            }
+
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return etudiant;
+
+    }
     @Override
     public List<Professeur> findAllProfesseursbyIDdomaine(int id) {
         List<Professeur> list = new ArrayList<>();
@@ -116,6 +147,68 @@ public class PlatformeDaoImpl implements IPlatformeDao {
         }
         return list;
     }
+
+    @Override
+    public void editProfesseur(Professeur professeur){
+        String sql = "UPDATE utilisateur \n" +
+                "SET \n" +
+                "    nom = ?, \n" +
+                "    prenom = ?, \n" +
+                "    email = ?, \n" +
+                "    telephone = ?\n" +
+                "WHERE id_user = ?;";
+        try(Connection cn = SingletonConnection.getConnection()){
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, professeur.getNom());
+            ps.setString(2, professeur.getPrenom());
+            ps.setString(3, professeur.getEmail());
+            ps.setString(4,professeur.getTelephone());
+            ps.setInt(5, professeur.getId());
+
+            ps.executeUpdate();
+            String sql2 =  "UPDATE professeur \n" +
+                    "SET \n" +
+                    "    tarif_horaire = ?, \n" +
+                    "    adresse = ?, \n" +
+                    "    experience = ?, \n" +
+                    "    description = ?, \n" +
+                    "    about_me = ? \n" +
+                    "WHERE id_prof = ?;";
+            PreparedStatement ps2 = cn.prepareStatement(sql2);
+            ps2.setDouble(1 ,professeur.getTarif());
+            ps2.setString(2,professeur.getAdresse());
+            ps2.setString(3, professeur.getExperience());
+            ps2.setString(4, professeur.getDescription());
+            ps2.setString(5, professeur.getAboutMe());
+            ps2.setInt(6, professeur.getId());
+            ps2.executeUpdate();
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Demande> findAllRequestsbyProfesseur(int id){
+        List<Demande> list = new ArrayList<>();
+        String sql= "Select * from demande where id_prof="+id ;
+        try(Connection cn =SingletonConnection.getConnection();
+        Statement stm = cn.createStatement();
+        ResultSet rs = stm.executeQuery(sql)){
+            List<Integer> idsEtudiants = new ArrayList<>();
+            while (rs.next()){
+                int id_demande = rs.getInt("id_demande");
+                String message = rs.getString("message");
+                int id_etudiant = rs.getInt("id_etudiant");
+                Etudiant etudiant = findEtudiantbyID(id_etudiant);
+                list.add(new Demande(id_demande, message,etudiant));
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
 
 
     @Override

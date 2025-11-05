@@ -1,6 +1,7 @@
 package dao;
 import java.util.List;
 
+import metier.entities.Demande;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
@@ -14,6 +15,9 @@ public interface IPlatformeDao {
     public List<Domaine> findAllDomaines();
     public  List<Professeur> findAllProfesseursbyIDdomaine(int id);
     public Professeur findProfesseurbyID(int id);
+    public Etudiant findEtudiantbyID(int id);
     public List<Domaine> findAllDomainesbyIDprof(int id);
+    public void editProfesseur(Professeur professeur);
+    public List<Demande> findAllRequestsbyProfesseur(int id);
 
 }

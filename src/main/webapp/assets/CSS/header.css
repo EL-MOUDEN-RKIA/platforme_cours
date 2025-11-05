@@ -56,93 +56,6 @@ section h2{
 
 /* =========== hero ============ */
 /* header styling */
-header{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4fbf6;
-    padding-top: 15PX;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 15px;
-    margin-top: 8px;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    border: 1px solid #2e9b5c;
-    width: 87%;
-    height: 40px;
-
-
-    position: fixed;
-    top: 0;
-    z-index: 1000; /* pour qu’elle reste au-dessus du contenu */
-
-    background-color: rgb(244, 251, 246,0.93) ;
-
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #0a0a0a;
-}
-
-.logo span {
-    color: #2e9b5c;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #2a2a2a;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #2e9b5c;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.auth-buttons .signin {
-    color: #2a2a2a;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.auth-buttons .signup {
-    color: #2e9b5c;
-    border: 2px solid #2e9b5c;
-    padding: 6px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-
-}
-
-.auth-buttons .signup:hover {
-    background-color: #2e9b5c;
-    color: white;
-}
-
-
-/* ----- HERO SECTION ----- */
 /* header styling */
 header{
     display: flex;
@@ -151,6 +64,7 @@ header{
     align-items: center;
     background-color: #f4fbf6;
     padding-top: 15px;
+    min-height: 100vh ;
 }
 
 .navbar {
@@ -163,14 +77,11 @@ header{
     font-family: 'Poppins', sans-serif;
     border: 1px solid #2e9b5c;
     width: 87%;
-    height: 40px;
-
-
+    height: 60px;
     position: fixed;
     top: 0;
-    z-index: 1000; /* pour qu’elle reste au-dessus du contenu */
-
-    background-color: rgb(244, 251, 246,0.93) ;
+    z-index: 200; /* pour qu’elle reste au-dessus du contenu */
+    background-color: var(--secondary);
 
 }
 
@@ -227,6 +138,61 @@ header{
 .auth-buttons .signup:hover {
     background-color: #2e9b5c;
     color: white;
+}
+
+/* ----- PROFIL BTN ----- */
+/* Bouton profil circulaire */
+.profile-menu {
+    position: relative;
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-btn:hover {
+    background-color: rgba(53, 213, 100, 0.45);
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 55px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    width: 200px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dropdown-menu a {
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s ease;
+    font-size: 15px;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--secondary);
+}
+
+/* Affichage du menu au clic */
+.profile-menu.active .dropdown-menu {
+    display: flex;
 }
 
 
@@ -290,6 +256,7 @@ header{
     width: 420px;
     max-width: 100%;
 }
+
 
 
 /* =========== about-us ============ */

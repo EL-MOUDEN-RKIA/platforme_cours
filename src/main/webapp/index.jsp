@@ -7,176 +7,15 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/home.css">
-    <style>
-        /* header styling */
-        header{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4fbf6;
-            padding-top: 15px;
-            height: 100vh;
-        }
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/header.css">
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 15px;
-            margin-top: 8px;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            border: 1px solid #2e9b5c;
-            width: 87%;
-            height: 40px;
-
-
-            position: fixed;
-            top: 0;
-            z-index: 1000; /* pour qu’elle reste au-dessus du contenu */
-
-            background-color: rgb(244, 251, 246,0.93) ;
-
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0a0a0a;
-        }
-
-        .logo span {
-            color: #2e9b5c;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #2a2a2a;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2e9b5c;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .auth-buttons .signin {
-            color: #2a2a2a;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .auth-buttons .signup {
-            color: #2e9b5c;
-            border: 2px solid #2e9b5c;
-            padding: 6px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-
-        }
-
-        .auth-buttons .signup:hover {
-            background-color: #2e9b5c;
-            color: white;
-        }
-
-
-        /* ----- HERO SECTION ----- */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f3fdf6;
-            padding: 80px 10%;
-            border-radius: 12px;
-            height: 60vh;
-        }
-        .hero-text {
-            max-width: 500px;
-        }
-
-        .hero-text h5 {
-            color: #2db36c;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .hero-text h1 {
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 1.4;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-        }
-
-        .hero-text h1 span {
-            color: #2db36c;
-            position: relative;
-        }
-
-        .hero-text p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            max-width: 420px;
-        }
-
-        .hero-text .btn {
-            display: inline-block;
-            background-color: #2db36c;
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .hero-text .btn:hover {
-            background-color: #249b5d;
-        }
-
-        .hero-image img {
-            width: 420px;
-            max-width: 100%;
-        }
-    </style>
 
 </head>
 <body>
 
-<header>
-    <nav class="navbar">
-        <div class="logo">Edu<span>Le</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">All Course</a></li>
-            <li><a href="#">Pages</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <div class="auth-buttons">
-            <a href="logIn.jee" id="loginBtn" class="signin">Log In</a>
-            <a href="signUp.jee" class="signup" id="signupBtn">Sign Up</a>
-        </div>
-    </nav>
+<header id="home">
+    <%@ include file="WEB-INF/views/nav.jsp" %>
+
     <section class="hero">
         <div class="hero-text">
             <h5>Find the right teacher for your next course</h5>
@@ -236,7 +75,7 @@
 </section>
 
 <!-- Courses Section -->
-    <section class="list-course-teachers">
+    <section class="list-course-teachers" id="courses ">
         <div class="search">
             <div class="title-section">
                 <h1>All Courses of Edu<span>Le</span></h1>
@@ -329,7 +168,7 @@
     </section>
 
 <!-- testimonials Section -->
-<section class="section testimonials">
+<section id="testimonials" class="section testimonials">
     <div class="title">
         <h2>What Our Students Say</h2>
     </div>
@@ -465,8 +304,44 @@
     </div>
 </footer>
 <!-- Appel du fichier JS -->
-<script src="assets/JS/script.js"></script>
 
+<script src="${pageContext.request.contextPath}/assets/JS/script.js"></script>
+
+<script>
+    const scrollContainer = document.getElementById("scroll");
+    const leftBtn = document.getElementById("left");
+    const rightBtn = document.getElementById("right");
+
+    leftBtn.addEventListener("click", () => {
+        scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
+    });
+
+    rightBtn.addEventListener("click", () => {
+        scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
+    });
+
+    // Optionnel : Changement d'état actif
+    const buttons = document.querySelectorAll(".category");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        });
+    });
+
+    const profileMenu = document.querySelector('.profile-menu');
+    const profileBtn = document.querySelector('.profile-btn');
+
+    profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // empêche le clic de se propager au document
+        profileMenu.classList.toggle('active');
+    });
+
+    // Ferme le menu si on clique ailleurs
+    document.addEventListener('click', () => {
+        profileMenu.classList.remove('active');
+    });
+</script>
 
 </body>
 </html>

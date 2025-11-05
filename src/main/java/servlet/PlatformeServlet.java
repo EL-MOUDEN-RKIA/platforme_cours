@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import metier.entities.Demande;
 import metier.entities.Domaine;
 import metier.entities.Etudiant;
 import metier.entities.Professeur;
@@ -77,6 +78,24 @@ public class PlatformeServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/views/logIn.jsp").forward(req, resp);
                 break;
             }
+            case "/cheekMessage.jee":{
+                Professeur prof = null;
+                List<Demande> listDemande = new ArrayList<>();
+                int id = Integer.parseInt(req.getParameter("id"));
+                prof = ps.getProfesseurbyID(id);
+                listDemande = ps.getAllRequestsbyProfesseur(id);
+                req.setAttribute("prof", prof);
+                req.setAttribute("listDemande", listDemande);
+                req.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(req, resp);
+                break;
+            }
+            case "/cheekAccount.jee":{
+                Professeur prof = null;
+                int id = Integer.parseInt(req.getParameter("id"));
+                prof = ps.getProfesseurbyID(id);
+                req.setAttribute("prof", prof);
+                req.getRequestDispatcher("/WEB-INF/views/compte.jsp").forward(req, resp);
+            }
 
             // 🧭 Par défaut
             default: {
@@ -139,6 +158,21 @@ public class PlatformeServlet extends HttpServlet {
                     req.getRequestDispatcher("index.jsp").forward(req, resp);
                 }
                 break;
+            }
+            case "/updateProf.jee": {
+                int id = Integer.parseInt(req.getParameter("id"));
+                Professeur prof = new Professeur();
+                prof.setId(id);
+                prof.setNom(req.getParameter("nom"));
+                prof.setPrenom(req.getParameter("prenom"));
+                prof.setEmail(req.getParameter("email"));
+                prof.setTelephone(req.getParameter("telephone"));
+                prof.setAdresse(req.getParameter("adresse"));
+                prof.setExperience(req.getParameter("experience"));
+                prof.setAboutMe(req.getParameter("aboutMe"));
+                prof.setDescription(req.getParameter("description"));
+                prof.setTarif(Double.parseDouble(req.getParameter("tarif")));
+                ps.UpdateProfesseur(prof);
             }
 
             // 🧭 Par défaut

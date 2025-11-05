@@ -2,13 +2,16 @@ package metier.entities;
 
 public class Demande {
     private int id;
-    private String nom;
+    private String message;
+    private Etudiant etudiant;
+    private Professeur professeur;
 
     public Demande() {}
 
-    public Demande(int id, String nom) {
+    public Demande(int id, String message, Etudiant etudiant) {
         this.id = id;
-        this.nom = nom;
+        this.message = message;
+        this.etudiant = etudiant;
     }
 
     public int getId() {
@@ -19,11 +22,27 @@ public class Demande {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public Etudiant getEtudiant() {
+        return etudiant;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public Professeur getProfesseur() {
+        return professeur;
+    }
+
+    public void setProfesseur(Professeur professeur) {
+        this.professeur = professeur;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
