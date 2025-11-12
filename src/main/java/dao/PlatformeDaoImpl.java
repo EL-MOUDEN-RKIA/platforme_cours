@@ -95,6 +95,23 @@ public class PlatformeDaoImpl implements IPlatformeDao {
         return etudiant;
 
     }
+
+    @Override
+    public int findIDEtudiantbyIDDemande(int id){
+        int id_etd=0;
+        String sql = "Select * from demande where id_demande="+id;
+        try(Connection cn = SingletonConnection.getConnection();
+            Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery(sql)){
+            while (rs.next()){
+                id_etd= rs.getInt("id_etudiant");
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return id_etd;
+    }
+
     @Override
     public List<Professeur> findAllProfesseursbyIDdomaine(int id) {
         List<Professeur> list = new ArrayList<>();
@@ -202,7 +219,7 @@ public class PlatformeDaoImpl implements IPlatformeDao {
                 String message = rs.getString("message");
                 int id_etudiant = rs.getInt("id_etudiant");
                 Etudiant etudiant = findEtudiantbyID(id_etudiant);
-                list.add(new Demande(id_demande, message,etudiant));
+                list.add(new Demande(id_demande, message,etudiant, "en_attente"));
             }
         }catch (Exception e){
             throw new RuntimeException(e);

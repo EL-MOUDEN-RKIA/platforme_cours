@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.IPlatformeDao;
+import dao.MeetDao;
 import dao.PlatformeDaoImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,17 +15,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import jakarta.servlet.http.HttpSession;
-import metier.entities.Demande;
-import metier.entities.Domaine;
-import metier.entities.Etudiant;
-import metier.entities.Professeur;
-import metier.entities.Utilisateur;
+import metier.entities.*;
 import service.PlatformeService;
 
 @WebServlet(urlPatterns = {"*.jee"})
 public class PlatformeServlet extends HttpServlet {
     private IPlatformeDao metier;
     private PlatformeService ps = new PlatformeService();
+    private MeetDao meetdao = new MeetDao();
 
     @Override
     public void init() throws ServletException {
@@ -164,7 +162,26 @@ public class PlatformeServlet extends HttpServlet {
 
             }
 
+            case "/accepterDemande.jee": {
+                int id_prof = Integer.parseInt(req.getParameter("idProf"));
+                int id_demande = Integer.parseInt(req.getParameter("idDemande"));
+                Professeur prof = null;
+                Etudiant etd = null;
+                List<Demande> listDemande = new ArrayList<>();
+                int id_Etd = ps.getIDEtudiantbyIDDemande(id_demande);
+                etd = ps.getEtudiantbyId(id_Etd);
+                prof = ps.getProfesseurbyID(id_prof);
+                listDemande = ps.getAllRequestsbyProfesseur(id_prof);
+                HttpSession session = req.getSession();
+                session.setAttribute("prof", prof);
+                req.setAttribute("prof", prof);
+                req.setAttribute("listDemande", listDemande);
+                req.setAttribute("etd", etd);
+                req.setAttribute("id_prof", id_prof);
+                req.setAttribute("id_demande",  id_demande);
+                req.getRequestDispatcher("/WEB-INF/views/accepter.jsp").forward(req, resp);
 
+            }
 
             // 🧭 Par défaut
             default: {
@@ -253,7 +270,29 @@ public class PlatformeServlet extends HttpServlet {
                 dispatcher.forward(req, resp);
                 break;
             }
+            case "/meetInfo.jee":{
+                int id_prof = Integer.parseInt(req.getParameter("id_prof"));
+                int id_etd = Integer.parseInt(req.getParameter("id_Etd"));
+                int id_demande = Integer.parseInt(req.getParameter("idDemande"));
+                String titre=req.getParameter("titre");
+                String description = req.getParameter("description");
+                Etudiant etd = ps.getEtudiantbyId(id_etd);
+                Professeur prf = ps.getProfesseurbyID(id_prof);
+                meetdao.saveMeet(new Meet(titre, description, prf, etd));
+                System.out.println(">>> id_demande reçu du formulaire = " + req.getParameter("idDemande"));
+                System.out.println(">>> id_demande converti = " + id_demande);
+                meetdao.accepterDemande(id_demande);
+                Professeur prof = null;
+                List<Demande> listDemande = new ArrayList<>();
+                prof = ps.getProfesseurbyID(id_prof);
+                listDemande = ps.getAllRequestsbyProfesseur(id_prof);
+                HttpSession session = req.getSession();
+                session.setAttribute("prof", prof);
+                req.setAttribute("prof", prof);
+                req.setAttribute("listDemande", listDemande);
+                req.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(req, resp);
 
+            }
 
             // 🧭 Par défaut
             default: {

@@ -23,5 +23,6 @@ public class PlatformeService {
     public void UpdateProfesseur(Professeur prof){  p.editProfesseur(prof); }
     public List<Demande> getAllRequestsbyProfesseur(int id){ return p.findAllRequestsbyProfesseur(id); }
     public Etudiant getEtudiantbyId(int id){ return p.findEtudiantbyID(id); }
+    public int getIDEtudiantbyIDDemande(int id){ return p.findIDEtudiantbyIDDemande(id); }
 }
 

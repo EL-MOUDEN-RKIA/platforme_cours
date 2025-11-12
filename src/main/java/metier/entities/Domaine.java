@@ -1,7 +1,17 @@
 package metier.entities;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "module")
 public class Domaine {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_module")
     private int  id;
+    @Column(name = "nom_module")
     private String name;
 
     public Domaine(int id, String name){
@@ -9,6 +19,9 @@ public class Domaine {
         this.name = name;
 
     }
+
+    @ManyToMany(mappedBy = "domaines")
+    List<Professeur> professeurs=new ArrayList<Professeur>();
 
     public int getId() {
         return id;
