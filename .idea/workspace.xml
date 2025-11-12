@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="acffccea-e121-4c52-a60d-31e57bedfb23" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Meet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/compteEtu.jsp" afterDir="false" />
@@ -53,6 +54,29 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardEtudiant.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardProf.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+=======
+    <list default="true" id="745ab6e4-bc2a-40b5-8e63-524b4b37b65a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/MeetDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Meet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/HibernateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/IPlatformeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/IPlatformeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PlatformeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PlatformeDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Demande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Demande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Domaine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Domaine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Etudiant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Professeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PlatformeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PlatformeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/PlatformeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/PlatformeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/CSS/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardEtudiant.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardProf.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/accepter.jsp" afterDir="false" />
+>>>>>>> 9457d3d5fbb0bfe9298677234eafdf1919af1022
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +88,13 @@
       <list>
         <option value="Interface" />
         <option value="CSS File" />
+<<<<<<< HEAD
         <option value="Class" />
         <option value="Jsp File" />
+=======
+        <option value="Jsp File" />
+        <option value="Class" />
+>>>>>>> 9457d3d5fbb0bfe9298677234eafdf1919af1022
       </list>
     </option>
   </component>
@@ -94,6 +123,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -109,8 +139,27 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.apache-tomcat-10.1.48.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/Desktop/platformeCours&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> 9457d3d5fbb0bfe9298677234eafdf1919af1022
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\Desktop\platformeCours\src\main\webapp\assets\images" />
@@ -133,7 +182,11 @@
     </option>
   </component>
   <component name="RunManager">
+<<<<<<< HEAD
     <configuration name="apache-tomcat-10.1.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="apache-tomcat-10.1.48" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+=======
+    <configuration name="apache-tomcat-10.1.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat_1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+>>>>>>> 9457d3d5fbb0bfe9298677234eafdf1919af1022
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="platformeCours:war exploded">
@@ -241,6 +294,7 @@
       <workItem from="1762006440170" duration="2819000" />
       <workItem from="1762076412907" duration="20423000" />
       <workItem from="1762187505935" duration="5263000" />
+<<<<<<< HEAD
       <workItem from="1762463479578" duration="20000" />
       <workItem from="1762508300613" duration="1771000" />
       <workItem from="1762605486362" duration="7949000" />
@@ -251,6 +305,14 @@
       <workItem from="1762953070453" duration="1395000" />
       <workItem from="1762954953293" duration="18000" />
       <workItem from="1762956870765" duration="705000" />
+=======
+      <workItem from="1762356574866" duration="9912000" />
+      <workItem from="1762765932318" duration="5069000" />
+      <workItem from="1762781707458" duration="5664000" />
+      <workItem from="1762856461509" duration="4764000" />
+      <workItem from="1762867931105" duration="6250000" />
+      <workItem from="1762936681359" duration="15430000" />
+>>>>>>> 9457d3d5fbb0bfe9298677234eafdf1919af1022
     </task>
     <servers />
   </component>

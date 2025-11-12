@@ -27,5 +27,6 @@ public class PlatformeService {
     }
 
 
+    public int getIDEtudiantbyIDDemande(int id){ return p.findIDEtudiantbyIDDemande(id); }
 }
 

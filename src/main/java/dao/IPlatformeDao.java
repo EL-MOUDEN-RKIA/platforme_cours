@@ -13,6 +13,7 @@ public interface IPlatformeDao {
     public  List<Professeur> findAllProfesseursbyIDdomaine(int id);
     public Professeur findProfesseurbyID(int id);
     public Etudiant findEtudiantbyID(int id);
+    public int findIDEtudiantbyIDDemande(int id);
     public List<Domaine> findAllDomainesbyIDprof(int id);
     public void editProfesseur(Professeur professeur);
     public List<Demande> findAllRequestsbyProfesseur(int id);

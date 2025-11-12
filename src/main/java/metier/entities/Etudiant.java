@@ -1,5 +1,11 @@
 package metier.entities;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "etudiant")
 public class Etudiant extends Utilisateur {
     private String niveau_etude;
     public  Etudiant() {}
@@ -10,6 +16,12 @@ public class Etudiant extends Utilisateur {
         super(id, nom, prenom, email, mot_de_passe, telephone);
         this.niveau_etude = niveau_etude;
     }
+
+    @OneToMany(mappedBy = "etudiant", cascade =CascadeType.ALL,  orphanRemoval = true)
+    private List<Demande> demandes =new ArrayList<>();
+
+    @OneToMany(mappedBy = "etudiant",  cascade =CascadeType.ALL,  orphanRemoval = true)
+    private List<Meet> meets =new ArrayList<>();
 
     public String getNiveau_etude() {
         return niveau_etude;

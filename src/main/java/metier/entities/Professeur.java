@@ -1,17 +1,35 @@
 package metier.entities;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "professeur")
 public class Professeur extends Utilisateur {
     private String experience;
+    @Column(name = "tarif_horaire")
     private Double tarif;
     private String description;
     private String adresse;
     private String image;
+    @Column(name = "about_me")
     private String aboutMe;
 
+    @OneToMany(mappedBy = "professeur", cascade =CascadeType.ALL,  orphanRemoval = true)
+    private List<Demande> demandes=new ArrayList<>();
+
+    @OneToMany(mappedBy = "prof",  cascade =CascadeType.ALL,  orphanRemoval = true)
+    private List<Meet> meets =new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "professeur_module",   // nom de la table de liaison
+            joinColumns = @JoinColumn(name = "id_prof"), // clé étrangère vers Professeur
+            inverseJoinColumns = @JoinColumn(name = "id_module") // clé étrangère vers Domaine
+    )
     private List<Domaine> domaines = new ArrayList<>();
+
 
     public Professeur() {
         super();

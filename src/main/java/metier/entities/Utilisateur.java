@@ -1,6 +1,13 @@
 package metier.entities;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "utilisateur")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user")
     private int id;
     private String nom;
     private String prenom;
@@ -9,13 +16,6 @@ public class Utilisateur {
     private String telephone;
     private String role;
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public Utilisateur() {}
 
@@ -76,5 +76,13 @@ public class Utilisateur {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
