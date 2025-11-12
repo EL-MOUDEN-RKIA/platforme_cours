@@ -1,205 +1,20 @@
 <%@ page import="metier.entities.Professeur" %>
+<%@ page import="metier.entities.Etudiant" %>
 <%@ page import="java.util.List" %>
 <%@ page import="metier.entities.Domaine" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Etudiant etu = (Etudiant) session.getAttribute("etudiant");
+%>
+
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/demande.css">
     <title>Programmez votre cours</title>
-    <style>
-        body {
-            font-family: "Poppins", Arial, sans-serif;
-            background-color: #fff;
-            color: #222;
-            margin: 0;
-            padding: 40px;
-        }
-
-        .container {
-            display: flex;
-            gap: 50px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        /* ====== Carte Prof ====== */
-        .profile-card {
-            width: 300px;
-            background: #fff;
-            border-radius: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            padding: 20px;
-        }
-
-        .profile-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .price-tag {
-            position: relative;
-            top: -40px;
-            display: inline-block;
-            background: #2e9b5c;
-            color: white;
-            font-weight: bold;
-            font-size: 22px;
-            padding: 10px 20px;
-            border-radius: 40px;
-        }
-
-        .profile-card h2 {
-            margin-top: -10px;
-            font-size: 22px;
-        }
-
-        .stars {
-            color: #f8b400;
-            font-size: 18px;
-        }
-
-        .first-course {
-            color:#2e9b5c;
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 5px;
-        }
-
-        .availability {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .availability span {
-            color: #ffb400;
-            margin-right: 5px;
-            font-size: 18px;
-        }
-
-        /* ====== Section Droite ====== */
-        .content {
-            flex: 1;
-            max-width: 700px;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 0;
-        }
-
-        h3 {
-            color: #333;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* Zone de texte modifiable */
-        textarea {
-            width: 100%;
-            height: 150px;
-            border: 1px solid #ddd;
-            background: #f8f8f8;
-            border-radius: 10px;
-            padding: 15px;
-            resize: none;
-            font-family: inherit;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #222;
-            overflow-y: auto;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        textarea:focus {
-            border-color: #32724c;
-            box-shadow: 0 0 4px rgba(255,90,95,0.4);
-        }
-
-        .info-section {
-            margin-top: 30px;
-        }
-
-        .info-grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .info-box {
-            flex: 1;
-            background: #f6f6f6;
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 16px;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 5px;
-        }
-
-        /* ====== Bouton ====== */
-        .btn {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        button {
-            background: linear-gradient(90deg, #2e9b5c);
-            border: none;
-            border-radius: 50px;
-            padding: 15px 50px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(255,75,75,0.3);
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,75,75,0.4);
-        }
-
-        .arrow {
-            margin-left: 10px;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        @media(max-width: 850px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .content {
-                max-width: 100%;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -211,7 +26,7 @@
         if (prof != null) {
     %>
     <div class="profile-card">
-        <img src="https://i.ibb.co/TrJpSR5/profile.jpg" alt="Mouna">
+        <img src="https://i.ibb.co/4pDNDk1/avatar.png" alt="Mouna">
         <div class="price-tag"><%=prof.getTarif()%> MAD /h</div>
         <h2><%=prof.getPrenom()%></h2>
         <div class="stars">★★★★★ <span style="color:#888;font-size:14px;">(4 avis)</span></div>
@@ -220,7 +35,7 @@
     </div>
 
     <!-- Section message et contact -->
-    <form action="envoyer.jee">
+    <form action="envoyer.jee" method="post">
         <div class="content">
             <h1>Programmez</h1>
             <p>votre premier cours avec<%=prof.getPrenom()%></p>
@@ -238,18 +53,23 @@ Est ce que cela vous irait ? Pouvez-vous prendre contact avec moi afin que l’o
 
                 <div class="info-grid">
                     <div class="info-box">
-                        <div class="info-label">Adresse</div>
-                        Casablanca, Maroc
+                        <div class="info-label">Email</div>
+                        <%= (etu != null && etu.getEmail() != null) ? etu.getEmail() : "Non renseignée" %>
                     </div>
                     <div class="info-box">
                         <div class="info-label">Numéro de téléphone</div>
-                        0678-654323
+                        <%= (etu != null && etu.getTelephone() != null) ? etu.getTelephone() : "Non renseigné" %>
                     </div>
                 </div>
             </div>
+            <!-- Champs cachés pour envoyer les infos -->
+            <input type="hidden" name="email" value="<%= etu != null ? etu.getEmail() : "" %>">
+            <input type="hidden" name="telephone" value="<%= etu != null ? etu.getTelephone() : "" %>">
+            <input type="hidden" name="idEtudiant" value="<%= etu != null ? etu.getId() : "" %>">
+            <input type="hidden" name="idProf" value="<%= prof.getId() %>">
 
             <div class="btn">
-                <button id="nextBtn">Envoyer <span class="arrow">➜</span></button>
+                <button id="nextBtn"  type="submit">Envoyer <span class="arrow"></span></button>
             </div>
         </div>
     </form>
@@ -260,17 +80,8 @@ Est ce que cela vous irait ? Pouvez-vous prendre contact avec moi afin que l’o
 }
 %>
 
-<script>
-    // Quand l'utilisateur clique sur "Suivant", on récupère le message et on affiche une confirmation
-    document.getElementById("nextBtn").addEventListener("click", () => {
-        const message = document.getElementById("message").value.trim();
-        if (message === "") {
-            alert("Veuillez entrer un message avant d'envoyer !");
-        } else {
-            alert("Merci ! Votre message a été envoyé à Mouna \n\nMessage envoyé :\n" + message);
-        }
-    });
-</script>
+<script src="assets/JS/demande.js"></script>
+
 
 </body>
 </html>

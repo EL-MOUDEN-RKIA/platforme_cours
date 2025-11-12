@@ -43,6 +43,8 @@
             <%= etudiant.getPrenom().substring(0, 1).toUpperCase() %>
         </button>
         <div class="dropdown-menu">
+            <a href="cheekNotifications.jee?id=<%= etudiant.getId() %>"> Notifications</a>
+            <a href="cheekAccountEtu.jee?id=<%= etudiant.getId() %>">Account</a>
             <a href="logout.jee">LogOut</a>
         </div>
     </div>

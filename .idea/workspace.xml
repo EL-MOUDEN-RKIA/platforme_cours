@@ -9,32 +9,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745ab6e4-bc2a-40b5-8e63-524b4b37b65a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/demande.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/accounts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/messages.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/dashboardEtudiant.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/dashboardProf.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+    <list default="true" id="acffccea-e121-4c52-a60d-31e57bedfb23" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Meet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/compteEtu.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/notification.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/demande.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/logIn.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/signUp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/JS/demande.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/JS/signUp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/hero1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof10M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof11F.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof12F.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof13F.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof1M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof2F.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof2M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof4M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof5F.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof6M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof7M.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof8f.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/prof9M.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/IPlatformeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/IPlatformeDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/PlatformeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PlatformeDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Utilisateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/platformecours/HelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SingletonConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SingletonConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/metier/entities/Domaine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/metier/entities/Domaine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/PlatformeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PlatformeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlet/PlatformeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/PlatformeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/compte.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/compte.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contact.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/demande.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/demande.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/logIn.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/logIn.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/nav.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/professeur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/professeur.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/signUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/CSS/accounts.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/accounts.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/CSS/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/CSS/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/CSS/messages.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/CSS/messages.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardEtudiant.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboardProf.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,9 +63,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="CSS File" />
         <option value="Class" />
         <option value="Jsp File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -79,24 +96,25 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.apache-tomcat-10.1.48.executor": "Run",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENOVO/Desktop/platformeCours",
-    "list.type.of.created.stylesheet": "CSS",
+    "last_opened_file_path": "C:/Users/LENOVO/Desktop/platformeCours/src/main/webapp/assets/images",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENOVO\Desktop\platformeCours\src\main\webapp\assets\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\Desktop\platformeCours\src\main\webapp" />
     </key>
@@ -115,7 +133,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="apache-tomcat-10.1.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat_1_platformeCours" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="apache-tomcat-10.1.48" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="apache-tomcat-10.1.48" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="platformeCours:war exploded">
@@ -213,7 +231,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="745ab6e4-bc2a-40b5-8e63-524b4b37b65a" name="Changes" comment="" />
+      <changelist id="acffccea-e121-4c52-a60d-31e57bedfb23" name="Changes" comment="" />
       <created>1761994201268</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -223,26 +241,20 @@
       <workItem from="1762006440170" duration="2819000" />
       <workItem from="1762076412907" duration="20423000" />
       <workItem from="1762187505935" duration="5263000" />
-      <workItem from="1762356574866" duration="9580000" />
+      <workItem from="1762463479578" duration="20000" />
+      <workItem from="1762508300613" duration="1771000" />
+      <workItem from="1762605486362" duration="7949000" />
+      <workItem from="1762642133131" duration="9101000" />
+      <workItem from="1762765731070" duration="7156000" />
+      <workItem from="1762772978353" duration="32989000" />
+      <workItem from="1762947833131" duration="5162000" />
+      <workItem from="1762953070453" duration="1395000" />
+      <workItem from="1762954953293" duration="18000" />
+      <workItem from="1762956870765" duration="705000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/dao/PlatformeDaoImpl.java</url>
-          <line>35</line>
-          <properties class="dao.PlatformeDaoImpl" method="findProfesseurbyID">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

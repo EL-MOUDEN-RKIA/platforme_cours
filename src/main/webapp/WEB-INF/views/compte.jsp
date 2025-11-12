@@ -8,7 +8,6 @@
     <title>Tableau de bord - Salwa</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/messages.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/CSS/accounts.css">
-
 </head>
 <body>
 <% Professeur prof3 = (Professeur) request.getAttribute("prof");%>

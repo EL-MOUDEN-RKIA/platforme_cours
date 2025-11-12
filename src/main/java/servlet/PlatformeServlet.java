@@ -14,14 +14,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import jakarta.servlet.http.HttpSession;
-import metier.entities.Demande;
-import metier.entities.Domaine;
-import metier.entities.Etudiant;
-import metier.entities.Professeur;
-import metier.entities.Utilisateur;
+import metier.entities.*;
 import service.PlatformeService;
 
-@WebServlet(urlPatterns = {"*.jee"})
+@WebServlet(urlPatterns = {"/envoyer.jee", "/selectProf.jee", "*.jee"})
 public class PlatformeServlet extends HttpServlet {
     private IPlatformeDao metier;
     private PlatformeService ps = new PlatformeService();
@@ -60,7 +56,6 @@ public class PlatformeServlet extends HttpServlet {
                 break;
             }
 
-            // 👨‍🏫 Détails d’un professeur
             case "/selectProf.jee": {
                 int id_professeur = Integer.parseInt(req.getParameter("id"));
                 Professeur professeur = ps.getProfesseurbyID(id_professeur);
@@ -81,7 +76,6 @@ public class PlatformeServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/views/demande.jsp").forward(req, resp);
             }
 
-            // 📝 Page d’inscription (affichage)
             case "/signUp.jee": {
                 List<Domaine> listModel = ps.getAllDomaine();
                 req.setAttribute("listModel", listModel);
@@ -89,7 +83,6 @@ public class PlatformeServlet extends HttpServlet {
                 break;
             }
 
-            // 🔐 Page de connexion (affichage)
             case "/logIn.jee": {
                 req.getRequestDispatcher("/WEB-INF/views/logIn.jsp").forward(req, resp);
                 break;
@@ -116,7 +109,28 @@ public class PlatformeServlet extends HttpServlet {
                 req.setAttribute("prof", prof);
                 req.getRequestDispatcher("/WEB-INF/views/compte.jsp").forward(req, resp);
             }
-
+            case "/cheekNotifications.jee":{
+                Etudiant etudiant=null;
+                List<Meet> listMeet = new ArrayList<>();
+                int id = Integer.parseInt(req.getParameter("id"));
+                etudiant = ps.getEtudiantbyId(id);
+                listMeet = ps.getAllRequestsbyEtudiant(id);
+                HttpSession session = req.getSession();
+                session.setAttribute("etudiant", etudiant);
+                req.setAttribute("etudiant", etudiant);
+                req.setAttribute("listMeet", listMeet);
+                req.getRequestDispatcher("/WEB-INF/views/notification.jsp").forward(req, resp);
+                break;
+            }
+            case "/cheekAccountEtu.jee":{
+                Etudiant etudiant = null;
+                int id = Integer.parseInt(req.getParameter("id"));
+                etudiant = ps.getEtudiantbyId(id);
+                HttpSession session = req.getSession();
+                session.setAttribute("etudiant",etudiant);
+                req.setAttribute("etudiant", etudiant);
+                req.getRequestDispatcher("/WEB-INF/views/compteEtu.jsp").forward(req, resp);
+            }
             //LogIn
             case "/dashboard.jee": {
                 String email = req.getParameter("email");
@@ -163,10 +177,6 @@ public class PlatformeServlet extends HttpServlet {
                 String message=req.getParameter("message");
 
             }
-
-
-
-            // 🧭 Par défaut
             default: {
                 resp.sendRedirect("home.jee");
                 break;
@@ -208,7 +218,6 @@ public class PlatformeServlet extends HttpServlet {
                 break;
             }
 
-            // 🎓 Inscription d’un étudiant
             case "/logIn.jee": {
                 String nom = req.getParameter("nom");
                 String prenom = req.getParameter("prenom");
@@ -253,9 +262,44 @@ public class PlatformeServlet extends HttpServlet {
                 dispatcher.forward(req, resp);
                 break;
             }
+            case "/updateEtu.jee": {
+                int id = Integer.parseInt(req.getParameter("id"));
+                Etudiant etudiant = new Etudiant();
+                etudiant.setId(id);
+                etudiant.setNom(req.getParameter("nom"));
+                etudiant.setPrenom(req.getParameter("prenom"));
+                etudiant.setEmail(req.getParameter("email"));
+                etudiant.setTelephone(req.getParameter("telephone"));
+                etudiant.setNiveau_etude(req.getParameter("niveau_etude"));
+                // Mise à jour en base de données
+                metier.UpdateEtudiant(etudiant);
 
+                // Récupérer les infos mises à jour pour les afficher sur la page du compte
+                Etudiant updatedEtu = ps.getEtudiantbyId(id);
+                req.setAttribute("etudiant", updatedEtu);
 
-            // 🧭 Par défaut
+                // Faire un forward vers la page du compte
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/compteEtu.jsp");
+                dispatcher.forward(req, resp);
+                break;
+            }
+            case "/envoyer.jee":  {
+                int idProf = Integer.parseInt(req.getParameter("idProf"));
+                int idEtudiant = Integer.parseInt(req.getParameter("idEtudiant"));
+                String message = req.getParameter("message");
+
+               Professeur professeur = ps.getProfesseurbyID(idProf);
+               Etudiant etu = ps.getEtudiantbyId(idEtudiant);
+
+                Demande demande = new Demande();
+                demande.setMessage(message);
+                demande.setProfesseur(professeur);
+                demande.setEtudiant(etu);
+
+                metier.saveDemande(demande);
+                resp.sendRedirect(req.getContextPath() + "/selectProf.jee?id=" + idProf);
+                return;
+            }
             default: {
                 resp.sendRedirect("home.jee");
                 break;

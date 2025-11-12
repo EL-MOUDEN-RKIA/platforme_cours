@@ -2,10 +2,7 @@ package service;
 
 import java.util.List;
 
-import metier.entities.Demande;
-import metier.entities.Domaine;
-import metier.entities.Etudiant;
-import metier.entities.Professeur;
+import metier.entities.*;
 import dao.PlatformeDaoImpl;
 
 public class PlatformeService {
@@ -23,5 +20,12 @@ public class PlatformeService {
     public void UpdateProfesseur(Professeur prof){  p.editProfesseur(prof); }
     public List<Demande> getAllRequestsbyProfesseur(int id){ return p.findAllRequestsbyProfesseur(id); }
     public Etudiant getEtudiantbyId(int id){ return p.findEtudiantbyID(id); }
+
+
+    public List<Meet> getAllRequestsbyEtudiant(int id) {
+            return p.findAllRequestsbyEtudiant(id);
+    }
+
+
 }
 

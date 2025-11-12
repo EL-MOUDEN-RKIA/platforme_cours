@@ -7,11 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import metier.entities.Demande;
-import metier.entities.Domaine;
-import metier.entities.Etudiant;
-import metier.entities.Professeur;
-import metier.entities.Utilisateur;
+import metier.entities.*;
 
 public class PlatformeDaoImpl implements IPlatformeDao {
 
@@ -212,6 +208,7 @@ public class PlatformeDaoImpl implements IPlatformeDao {
 
 
 
+
     @Override
 
     public boolean signUpTeacher(Professeur professeur, Domaine domaine) {
@@ -330,4 +327,74 @@ public class PlatformeDaoImpl implements IPlatformeDao {
         }
         return user; // renvoie "professeur", "etudiant" ou null si non trouvé
     }
+
+    @Override
+    public void saveDemande(Demande demande) {
+        Connection connection= dao.SingletonConnection.getConnection();
+        try{
+            PreparedStatement ps=connection.prepareStatement("INSERT INTO demande (message, id_etudiant, id_prof) VALUES (?, ?, ?)");
+            ps.setString(1, demande.getMessage());
+            ps.setInt(2, demande.getEtudiant().getId());
+            ps.setInt(3, demande.getProfesseur().getId());
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public List<Meet> findAllRequestsbyEtudiant(int idEtudiant) {
+        List<Meet> listMeet = new ArrayList<>();
+        String sql = "SELECT * FROM meet WHERE etudiant_id = ?";
+        try {
+            Connection connection=SingletonConnection.getConnection();
+            PreparedStatement ps= connection.prepareStatement(sql);
+            ps.setInt(1, idEtudiant);
+            ResultSet rs = ps.executeQuery();
+            List<Integer> idsProfs = new ArrayList<>();
+            while (rs.next()){
+                int id_meet = rs.getInt("id_meet");
+                String titre = rs.getString("titre");
+                String description = rs.getString("description");
+                int id_prof = rs.getInt("id_prof");
+                Professeur prof = findProfesseurbyID(id_prof);
+                listMeet.add(new Meet(id_meet, titre,description,prof));
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return listMeet;
+    }
+
+
+    @Override
+    public void UpdateEtudiant(Etudiant etudiant) {
+        String sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, telephone = ? WHERE id_user = ?";
+        try (Connection cn = SingletonConnection.getConnection()) {
+            // --- Mise à jour de la table utilisateur ---
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, etudiant.getNom());
+            ps.setString(2, etudiant.getPrenom());
+            ps.setString(3, etudiant.getEmail());
+            ps.setString(4, etudiant.getTelephone());
+            ps.setInt(5, etudiant.getId());
+            ps.executeUpdate();
+
+            // --- Mise à jour de la table etudiant ---
+            String sql2 = "UPDATE etudiant SET niveau_etude = ? WHERE id_etudiant = ?";
+            PreparedStatement ps2 = cn.prepareStatement(sql2);
+            ps2.setString(1, etudiant.getNiveau_etude());
+            ps2.setInt(2, etudiant.getId());
+            ps2.executeUpdate();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
+
+
+

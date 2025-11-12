@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class SingletonConnection {
     private static String URL = "jdbc:mysql://localhost:3306/plateforme_soutien";
     private static String USER = "root";
-    private static String PASSWORD = "roka1234";
+    private static String PASSWORD = "";
 
     public static Connection getConnection(){
         Connection conn = null;

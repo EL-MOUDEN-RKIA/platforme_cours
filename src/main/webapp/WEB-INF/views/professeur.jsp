@@ -82,9 +82,10 @@
         <section class="cours">
             <h3>Cours proposés</h3>
             <ul>
-                <li>Initiation à la guitare</li>
-                <li>Techniques avancées</li>
-                <li>Lecture et composition musicale</li>
+                <li>Approche basée sur la compréhension plutôt que la mémorisation</li>
+                <li>Exercices progressifs adaptés au niveau</li>
+                <li>Supports personnalisés et fiches de révision</li>
+                <li>Simulation d’examens et corrections détaillées</li>
             </ul>
         </section>
     </main>
